@@ -1,6 +1,7 @@
 package com.example.chapter1.controller;
 
 import com.example.chapter1.Entry.UserEntry;
+import com.example.chapter1.Exception.MyException;
 import org.apache.tomcat.jni.Error;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,9 @@ public class UserController {
 
         List<UserEntry> userEntries = new ArrayList<UserEntry>(users.values());
 
-        throw new Exception("未知错误");
+//        throw new Exception("未知错误");
 
+        throw new MyException("自定义错误");
 //        return userEntries;
     }
 

@@ -1,7 +1,9 @@
 package com.example.chapter1.Exception;
 
+import com.example.chapter1.Entry.ErrorEntry;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,4 +27,19 @@ public class GlobalExceptionHandler {
 
         return mav;
     }
+
+    @ExceptionHandler(value = MyException.class)
+    @ResponseBody
+    public Object myExceptionHandler(Exception e, HttpServletRequest req) {
+
+        ErrorEntry error = new ErrorEntry();
+
+        error.setCode(ErrorEntry.ERROR);
+        error.setMessage(e.getMessage());
+        error.setUrl(req.getRequestURL().toString());
+        error.setData("some data");
+
+        return error;
+    }
+
 }
