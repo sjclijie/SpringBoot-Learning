@@ -1,19 +1,19 @@
 package com.example.chapter1.controller;
 
-import com.example.chapter1.properties.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
+@RequestMapping(value = "/hello")
 public class HelloController {
 
-    @Autowired
-    private User user;
-
-    @GetMapping(value = "/")
-    public String index() {
-        return user.getName() + user.getAge();
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    @ResponseBody
+    public String index(ModelMap map) {
+        map.addAttribute("host", "https://www.suiyueyule.com");
+        return "hello";
     }
 }

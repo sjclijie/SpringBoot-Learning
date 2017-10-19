@@ -1,6 +1,7 @@
 package com.example.chapter1.controller;
 
 import com.example.chapter1.Entry.UserEntry;
+import org.apache.tomcat.jni.Error;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -12,11 +13,13 @@ public class UserController {
     static Map<Long, UserEntry> users = Collections.synchronizedMap(new HashMap<Long, UserEntry>());
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<UserEntry> getUserList() {
+    public List<UserEntry> getUserList() throws Exception {
 
         List<UserEntry> userEntries = new ArrayList<UserEntry>(users.values());
 
-        return userEntries;
+        throw new Exception("未知错误");
+
+//        return userEntries;
     }
 
 

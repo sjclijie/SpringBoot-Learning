@@ -72,5 +72,20 @@ public class UserTests {
                 .accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(request).andExpect(status().isOk())
                 .andExpect(content().string(equalTo("{\"id\":1,\"name\":\"aaa\",\"age\":22}")));
+
+        //delete
+        request = MockMvcRequestBuilders.delete("/users/1")
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request).andExpect(status().isOk())
+                .andExpect(content().string(equalTo("success")));
+
+
+        //get
+        request = MockMvcRequestBuilders.get("/users/")
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request).andExpect(status().isOk())
+                .andExpect(content().string(equalTo("[]")));
     }
 }
